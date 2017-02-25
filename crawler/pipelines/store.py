@@ -8,8 +8,8 @@
 from twisted.enterprise import adbapi
 import logging
 
-import tez_crawler.pipelines.qunarProcess as QunarProcess
-from tez_crawler.items.qunarItems import QunarAirTicketItem
+import crawler.pipelines.qunarProcess as QunarProcess
+from crawler.items.qunarItems import QunarAirTicketItem
 
 
 class MysqlPipeline(object):

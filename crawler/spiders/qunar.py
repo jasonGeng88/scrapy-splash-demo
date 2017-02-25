@@ -4,10 +4,10 @@ import sys
 from scrapy.loader import ItemLoader
 from scrapy_splash import SplashRequest
 import datetime
-import tez_crawler.utils as Utils
+import crawler.utils as Utils
 import json
 
-from tez_crawler.items.qunarItems import QunarAirTicketItem
+from crawler.items.qunarItems import QunarAirTicketItem
 
 
 class QunarSpider(scrapy.Spider):

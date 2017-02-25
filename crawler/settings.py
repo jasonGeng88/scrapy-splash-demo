@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for tez_crawler project
+# Scrapy settings for crawler project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,10 +9,10 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'tez_crawler'
+BOT_NAME = 'crawler'
 
-SPIDER_MODULES = ['tez_crawler.spiders']
-NEWSPIDER_MODULE = 'tez_crawler.spiders'
+SPIDER_MODULES = ['crawler.spiders']
+NEWSPIDER_MODULE = 'crawler.spiders'
 
 #SPLASH
 SPLASH_URL = 'http://127.0.0.1:8050'
@@ -43,7 +43,7 @@ DB_CONNECT = {
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 # run: items go through from lower valued to higher valued classes
 ITEM_PIPELINES = {
-   'tez_crawler.pipelines.store.MysqlPipeline': 300,
+   'crawler.pipelines.store.MysqlPipeline': 300,
 }
 
 # Override the default request headers:
@@ -55,7 +55,7 @@ DEFAULT_REQUEST_HEADERS = {
 #CACHE
 HTTPCACHE_ENABLED=True
 HTTPCACHE_EXPIRATION_SECS=0
-HTTPCACHE_DIR='/Users/jason-geng/Code/python/tez_crawler/httpcache'
+HTTPCACHE_DIR='/Users/jason-geng/Code/python/crawler/httpcache'
 HTTPCACHE_IGNORE_HTTP_CODES=[]
 HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
 # HTTPCACHE_POLICY='scrapy.extensions.httpcache.DummyPolicy' #仅开发使用
