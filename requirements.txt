@@ -1,0 +1,2 @@
+PyMySQL==0.7.9
+scrapy-splash==0.7.1
