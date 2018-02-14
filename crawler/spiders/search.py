@@ -30,10 +30,7 @@ class SearchSpider(scrapy.Spider):
                 'Cookie': cookie,
                 'Accept-Language': 'zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4',
                 'Accept': 'text/html,application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.101 Safari/537.36',
-                'Host': 'x771208.com',
-                'Pragma': 'no-cache',
-                'Referer': 'http://x771208.com/bbs/thread.php?fid=%d' % self.fid,
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.101 Safari/537.36'
             }
             yield scrapy.Request(url=url,
                                  headers=headers,
