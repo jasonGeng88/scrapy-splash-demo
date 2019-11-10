@@ -1,0 +1,29 @@
+{
+  "name": "scrapy-splash-demo",
+  "version": "1.0.0",
+  "description": "Scrapy + Splash Demo 示例 ===========================",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonGeng88/scrapy-splash-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonGeng88/scrapy-splash-demo/issues"
+  },
+  "homepage": "https://github.com/jasonGeng88/scrapy-splash-demo#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
