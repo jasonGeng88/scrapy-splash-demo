@@ -15,7 +15,7 @@ SPIDER_MODULES = ['crawler.spiders']
 NEWSPIDER_MODULE = 'crawler.spiders'
 
 # SPLASH
-SPLASH_URL = 'http://127.0.0.1:8050'
+# SPLASH_URL = 'http://127.0.0.1:8050'
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
@@ -27,6 +27,9 @@ SPIDER_MIDDLEWARES = {
 
 # Download
 DOWNLOAD_TIMEOUT = 10
+DOWNLOAD_DELAY=3
+
+CONCURRENT_REQUESTS = 1
 
 # MYSQL
 DB_SERVER = 'pymysql'  # For detail, please see twisted doc

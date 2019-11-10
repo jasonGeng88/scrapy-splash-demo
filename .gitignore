@@ -1,3 +1,6 @@
 .scrapy
 **.pyc
 .idea/**
+**/.DS_Store
+#http cache
+a/
