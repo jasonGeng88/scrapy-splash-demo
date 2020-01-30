@@ -4,25 +4,38 @@ import time
 import scrapy
 from scrapy_splash import SplashRequest
 
+# 静安新城
+# html_url = "https://sh.lianjia.com/chengjiao/jinganxincheng/pg{0}a2a3a4/"
+# 闵行春申
+# html_url = "https://sh.lianjia.com/chengjiao/chunshen/pg{0}a2a3a4/"
+# 闵行莘庄
+# html_url = "https://sh.lianjia.com/chengjiao/xinzhuang5/pg{0}a2a3a4/"
+# 闵行七宝
+# html_url = "https://sh.lianjia.com/chengjiao/qibao/pg{0}a2a3a4/"
+
+area = "xinzhuang5"
 
 class SearchSpider(scrapy.Spider):
     name = "lianjia"
-    allowed_domains = ["lianjia.com","airbnb.cn"]
+    allowed_domains = ["lianjia.com"]
 
     start_urls = [
     ]
     meta = {}
 
-    html_url = "https://sh.lianjia.com/chengjiao/jinganxincheng/pg{0}/?sug=%E9%9D%99%E5%AE%89%E6%96%B0%E5%9F%8E"
+    html_url = "https://sh.lianjia.com/chengjiao/" + area + "/pg{0}a2a3a4/"
+    
     html_headers = {
         "Accept-Language": "zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4"
     }
 
-    filename = "lianjia_%s.csv" % (time.strftime("%Y%m%d%H%M", time.localtime()))
+    filename = "lianjia_%s_%s.csv" % (area, time.strftime("%Y%m%d%H%M", time.localtime()))
 
     def start_requests(self):
-        for i in range(1, 43):
+        for i in range(1, 63):
             url = self.html_url.format(i)
+            time.sleep(1)
+            # print(url)
             yield scrapy.Request(url=url,
                                  callback=self.parse)
 
@@ -43,6 +56,10 @@ class SearchSpider(scrapy.Spider):
         with open(self.filename, "a") as f:
             for item in sections:
                 name = item.xpath(name_path).extract()[0].encode("utf-8")
+                name_arr = name.split(" ")
+                cell_name = name_arr[0]
+                cell_type = name_arr[1]
+                cell_size = name_arr[2]
                 link = item.xpath(link_path).extract()[0].encode("utf-8")
                 time = item.xpath(time_path).extract()[0].encode("utf-8")
                 transaction_price = item.xpath(transaction_price_path).extract()[0].encode("utf-8")
@@ -58,40 +75,26 @@ class SearchSpider(scrapy.Spider):
                 # duration = item.xpath(duration_path).extract()[0].encode("utf-8")
                 unit_price = item.xpath(unit_price_path).extract()[0].encode("utf-8")
                 position_info = item.xpath(position_info_path).extract()[0].encode("utf-8")
-                house_info = item.xpath(house_info_path).extract()[0].encode("utf-8")
+                position_arr = position_info.split(" ")
+                floor = position_arr[0]
+                building = position_arr[1]
 
-                f.write(name + ",")
+                house_info = item.xpath(house_info_path).extract()[0].encode("utf-8")
+                house_arr = house_info.split("|")
+                direction = house_arr[0]
+                fitment_type = house_arr[1]
+
+                f.write(cell_name + ",")
+                f.write(cell_type + ",")
+                f.write(cell_size + ",")
                 f.write(link + ",")
                 f.write(time + ",")
                 f.write(transaction_price + ",")
                 f.write(sticker_price + ",")
                 f.write(duration + ",")
                 f.write(unit_price + ",")
-                f.write(position_info + ",")
-                f.write(house_info + "\n")
+                f.write(floor + ",")
+                f.write(building + ",")
+                f.write(direction + ",")
+                f.write(fitment_type + "\n")
         return
-        
-        #     for section in subject_sections:
-        #         print section
-        #         texts = section.css("a::text").extract()
-        #         subject = texts[0].encode("utf-8")
-        #         is_continue = True
-
-        #         # filter
-        #         for word in self.filter_words:
-        #             if subject.find(word) >= 0:
-        #                 is_continue = False
-        #                 break
-
-        #         if not is_continue:
-        #             continue
-
-        #         # match
-        #         for word in self.match_words:
-        #             if subject.find(word) >= 0:
-        #                 links = section.css("a::attr(href)").extract()
-        #                 name = texts[0].encode("utf-8")
-        #                 link = str(self.site_url + links[0])
-        #                 res = "<a href='%s'>%s</a>" % (link, name)
-        #                 f.write(res + "<br>\n")
-        #                 break

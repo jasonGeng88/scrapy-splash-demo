@@ -62,5 +62,5 @@ HTTPCACHE_EXPIRATION_SECS = 0
 HTTPCACHE_DIR = 'cache'
 HTTPCACHE_IGNORE_HTTP_CODES = []
 HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-HTTPCACHE_POLICY = 'scrapy.extensions.httpcache.DummyPolicy'  # 仅开发使用
-# HTTPCACHE_POLICY='scrapy.extensions.httpcache.RFC2616Policy' #生产环境使用
+# HTTPCACHE_POLICY = 'scrapy.extensions.httpcache.DummyPolicy'  # 仅开发使用
+HTTPCACHE_POLICY='scrapy.extensions.httpcache.RFC2616Policy' #生产环境使用
