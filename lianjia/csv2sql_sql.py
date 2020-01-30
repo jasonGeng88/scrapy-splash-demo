@@ -66,8 +66,9 @@ def main():
             duration = arr[7].replace("成交周期", "").replace("天", "").strip()
             unit_price = arr[8].strip()
             floor_type = arr[9].strip()
-            building_year = arr[10][0:4]
-            if len(building_year) < 4:
+            if arr[10][0]=="1" or arr[10][0]=="2":
+                building_year = arr[10][0:4]
+            else:
                 building_year = 0
 
             house_direction = arr[11].strip()
