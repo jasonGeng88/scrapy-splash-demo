@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+
 import scrapy
 
 
@@ -10,8 +11,8 @@ class SearchSpider(scrapy.Spider):
 
     site_url = ""
 
-    match_words = [""]  # 要匹配的关键词
-    filter_words = [""]  # 要过滤的关键词
+    match_words = []  # 要匹配的关键词
+    filter_words = []  # 要过滤的关键词
 
     filename = "test_%s.html" % (time.strftime("%Y%m%d%H%M", time.localtime()))
 
@@ -20,8 +21,8 @@ class SearchSpider(scrapy.Spider):
         with open(self.filename, "w") as f:
             f.write("<meta charset='UTF-8'>\n")
 
-        for i in range(1, 786):
-            url = "%sthread.php?fid=26&page=%d" % (self.site_url, i)
+        for i in range(1, 200):
+            url = "%s?page=%d" % (self.site_url, i)
             yield scrapy.Request(url=url,
                                  callback=self.parse)
 
@@ -31,7 +32,7 @@ class SearchSpider(scrapy.Spider):
 
         subject_sections = response.xpath(xpath)
 
-        with open(self.filename, "a") as f:
+        with open(self.filename, "w") as f:
             for section in subject_sections:
 
                 texts = section.css("a::text").extract()
